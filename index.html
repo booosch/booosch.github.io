@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网店轮播图</title>
+    <style>
+        .slideshow {
+            display: flex; /* 使用flex布局 */
+            overflow: hidden; /* 隐藏溢出部分 */
+            width: 100%; /* 设置轮播图容器宽度 */
+        }
+
+        .slide {
+            flex: 0 0 100%; /* 设置每张轮播图占满容器宽度 */
+            transition: transform 0.5s; /* 添加平滑过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+        <div class="slide"><img src="image1.jpg" alt="Image 1"></div>
+        <div class="slide"><img src="image2.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="image3.jpg" alt="Image 3"></div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.style.transform = `translateX(-${n * 100}%)`;
+            });
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 3000); // 自动切换轮播图每3秒
+    </script>
+</body>
+</html>
